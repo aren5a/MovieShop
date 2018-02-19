@@ -1,0 +1,36 @@
+﻿@model MovieShop.ViewModel.NewMovieViewModel
+
+@{   
+    ViewBag.Title = "MovieForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Movie == null)
+{<h1>New Movie</h1> }
+else
+{<h1>Edit Movie</h1> }
+@using (Html.BeginForm("Save", "Movies"))
+{
+    <div class="form-group">
+        <label>Name</label>
+        @Html.TextBoxFor(m => m.Movie.Name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Release Date</label>
+        @Html.TextBoxFor(m => m.Movie.ReleaseDate, "{0:d MMM yyyy }", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Number in Stock</label>
+        @Html.TextBoxFor(m => m.Movie.InStock,  new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Genre Type</label>
+        @Html.DropDownListFor(m => m.Movie.GenresId, new SelectList(Model.Genres, "Id", "Genre"), "Select Movie Genre", new { @class = "form-control" })
+    </div>
+
+    @Html.HiddenFor(m => m.Movie.Id);
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+

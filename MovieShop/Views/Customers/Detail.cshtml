@@ -1,0 +1,14 @@
+﻿@model MovieShop.Models.Customer
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@Model.Name</h1>
+<ul>
+    <li><b>Membership Type:</b> @Model.MembershipType.Name</li>
+    @if (Model.Birthdate.HasValue)
+    {
+        <li><b>Birthdate:</b> @Model.Birthdate</li>
+    }
+</ul>
